@@ -1,17 +1,12 @@
-import styled from 'styled-components';
+import styles from "./Label.module.scss"
 import React from 'react';
-import { ILabelProps } from '@/models/atoms/Label';
-
-const StyledLabel = styled.label`
-  color: #000;         
-  display: block;      
-`;
+import { ILabelProps } from '@/app/core/application/models/atoms/Label';
 
 const Label: React.FC<ILabelProps> = ({ text, htmlFor, className }) => {
   return (
-    <StyledLabel htmlFor={htmlFor} className={className}>
+    <label htmlFor={htmlFor} className={styles.label}>
       {text}
-    </StyledLabel>
+    </label>
   );
 };
 

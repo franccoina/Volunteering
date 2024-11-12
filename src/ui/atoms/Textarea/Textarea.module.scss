@@ -1,0 +1,17 @@
+@import "@/ui/themes/Variables.scss";
+
+.textarea {
+    width: 100%;  
+    height: 80px;        
+    padding: 10px;        
+    border: 1px solid $borders;
+    
+    &:focus {
+        outline: none;          
+    }
+    
+    &:disabled {
+        background-color: $bgInactive;
+        cursor: not-allowed;    
+    }
+}

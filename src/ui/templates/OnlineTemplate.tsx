@@ -1,14 +1,12 @@
 "use client";
 import React, { useEffect, useState, useCallback } from "react";
-import { ICompany, IVacants, ICompanyResponse, IVacantResponse } from "@/models/organisms/Cards";
-import { Card } from "../organisms/Cards/Cards";
 import Pagination from "../molecules/Pagination/Pagination";
+import HeaderOnline from "../organisms/Header/HeaderOnline";
 
-const ClientTemplate: React.FC<{ children: React.ReactNode; isView: string }> = ({
+const OnlineTemplate: React.FC<{ children: React.ReactNode }> = ({
   children,
-  isView,
 }) => {
-  const [cardData, setCardData] = useState<Array<ICompany | IVacants>>([]);
+  const [cardData, setCardData] = useState<Array<unknown>>([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
@@ -16,10 +14,7 @@ const ClientTemplate: React.FC<{ children: React.ReactNode; isView: string }> = 
   const fetchCardData = useCallback(async (page: string) => {
     setLoading(true);
     try {
-      const url =
-        isView === "vacants"
-          ? `https://vacantsbackendgates-production.up.railway.app/api/v1/vacants?page=${page}&size=6`
-          : `https://vacantsbackendgates-production.up.railway.app/api/v1/company?page=${page}&size=6`;
+      const url = `${page}`;
 
       const response = await fetch(url, {
         method: "GET",
@@ -30,7 +25,7 @@ const ClientTemplate: React.FC<{ children: React.ReactNode; isView: string }> = 
         throw new Error("Network response was not ok");
       }
 
-      const responseData: ICompanyResponse | IVacantResponse = await response.json();
+      const responseData = await response.json();
       setCardData(responseData.content);
       console.log(responseData);
 
@@ -41,7 +36,7 @@ const ClientTemplate: React.FC<{ children: React.ReactNode; isView: string }> = 
     } finally {
       setLoading(false);
     }
-  }, [isView]);
+  }, []);
 
   useEffect(() => {
     fetchCardData(currentPage.toString());
@@ -60,14 +55,15 @@ const ClientTemplate: React.FC<{ children: React.ReactNode; isView: string }> = 
   };
 
   return (
-    <main className="template">
+    <main className="onlineTemplate">
       {loading ? (
         <p>Cargando...</p>
       ) : (
         <>
+          <HeaderOnline/>
           <div className="cards-list">
             {cardData.map((item) => (
-              <Card isView={isView} $data={item} key={item.id} />
+              <></>
             ))}
           </div>
           {children}
@@ -83,4 +79,4 @@ const ClientTemplate: React.FC<{ children: React.ReactNode; isView: string }> = 
   );
 };
 
-export default ClientTemplate;
+export default OnlineTemplate;

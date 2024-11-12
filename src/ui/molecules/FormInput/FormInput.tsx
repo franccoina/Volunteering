@@ -1,7 +1,7 @@
 import React from "react";
 import Label from "@/ui/atoms/Label/Label";
 import Input from "@/ui/atoms/Input/Input";
-import { IFormInputProps } from "@/models/molecules/FormInput";
+import { IFormInputProps } from "@/app/core/application/models/molecules/FormInput";
 
 const FormInput: React.FC<IFormInputProps> = ({ text, htmlFor, className, type, placeholder,
     key, name, value, onChange, id, disabled }) => {

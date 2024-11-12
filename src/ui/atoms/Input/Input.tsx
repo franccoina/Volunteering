@@ -1,26 +1,8 @@
-import styled from 'styled-components';
 import React from 'react';
-import { IInputProps } from '@/models/atoms/Input';
-
-const InputStyle = styled.input`
-    background-color: #fff; 
-    width: 100%;  
-    height: 100%;        
-    padding: 10px;        
-    border: 1px solid #ccc; 
-    
-    &:focus {
-        outline: none;          
-    }
-    
-    &:disabled {
-        background-color: #f5f5f5;
-        cursor: not-allowed;    
-    }
-`;
+import { IInputProps } from '@/app/core/application/models/atoms/Input';
+import styles from "./Input.module.scss"
 
 const Input: React.FC<IInputProps> = ({
-    className,
     type,
     placeholder,
     value,
@@ -31,8 +13,8 @@ const Input: React.FC<IInputProps> = ({
     disabled = false
 }) => {
     return (
-        <InputStyle
-            className={className}
+        <input
+            className={styles.input}
             type={type}
             placeholder={placeholder}
             name={name}

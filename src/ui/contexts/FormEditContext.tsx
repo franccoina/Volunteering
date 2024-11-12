@@ -1,12 +1,10 @@
 'use client'
 import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { ICompany, IVacants } from '@/models/organisms/Cards';
-
 interface FormContextType {
   formData: { [key: string]: string };
   setFormData: React.Dispatch<React.SetStateAction<{ [key: string]: string }>>;
-  cardData: Array<ICompany | IVacants>;
-  setCardData: React.Dispatch<React.SetStateAction<Array<ICompany | IVacants>>>;
+  cardData: Array<unknown>;
+  setCardData: React.Dispatch<React.SetStateAction<Array<unknown>>>;
   children: ReactNode;
 }
 
@@ -14,16 +12,10 @@ const FormContext = createContext<FormContextType | undefined>(undefined);
 
 export const FormEditProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [formData, setFormData] = useState<{ [key: string]: string }>({
-    title: '',
-    description: '',
-    status: '',
-    name: '',
-    location: '',
-    contact: '',
-    companyId: '',
+    
   });
 
-  const [cardData, setCardData] = useState<Array<ICompany | IVacants>>([]);
+  const [cardData, setCardData] = useState<Array<unknown>>([]);
 
   return (
     <FormContext.Provider value={{ formData, setFormData, cardData, setCardData, children }}>

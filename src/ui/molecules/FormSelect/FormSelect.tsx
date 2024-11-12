@@ -1,7 +1,7 @@
 import React from "react";
 import Label from "@/ui/atoms/Label/Label";
 import Select from "@/ui/atoms/Select/Select";
-import { IFormSelectProps } from "@/models/molecules/FormSelect";
+import { IFormSelectProps } from "@/app/core/application/models/molecules/FormSelect";
 
 const FormSelect: React.FC<IFormSelectProps> = ({ text, htmlFor, className, options, name, value, onChange}) => {
     return (
