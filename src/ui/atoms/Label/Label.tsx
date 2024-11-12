@@ -4,7 +4,9 @@ import { ILabelProps } from '@/app/core/application/models/atoms/Label';
 
 const Label: React.FC<ILabelProps> = ({ text, htmlFor, className }) => {
   return (
-    <label htmlFor={htmlFor} className={styles.label}>
+    <label
+      htmlFor={htmlFor}
+      className={`${styles.label} ${className}`}>
       {text}
     </label>
   );

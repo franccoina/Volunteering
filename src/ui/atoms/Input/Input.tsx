@@ -10,11 +10,12 @@ const Input: React.FC<IInputProps> = ({
     onChange,
     id,
     key,
+    className,
     disabled = false
 }) => {
     return (
         <input
-            className={styles.input}
+            className={`${styles.input} ${className}`}
             type={type}
             placeholder={placeholder}
             name={name}

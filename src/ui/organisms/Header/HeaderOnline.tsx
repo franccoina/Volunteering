@@ -25,7 +25,7 @@ const HeaderOnline: React.FC = () => {
         <div className={styles.x}>
           <div className={styles.x}>
             <Button
-              className="inactiveBtn"
+              className={styles.x}
               type="button"
               label={""}
               icon={<GrAddCircle />}
@@ -33,7 +33,7 @@ const HeaderOnline: React.FC = () => {
           </div>
           <div className={styles.x}>
             <Button
-              className="activeBtn"
+              className={styles.x}
               type="button"
               label={""}
               icon={<GrAddCircle />}
@@ -41,14 +41,14 @@ const HeaderOnline: React.FC = () => {
           </div>
         </div>
         <div className={styles.x}>
-          <Input className="search-input" name="search" value={""} type="text" placeholder="⌕ Buscar..." />
+          <Input className={styles.x} name="search" value={""} type="text" placeholder="⌕ Buscar..." />
         </div>
       </div>
       <div className={styles.x}>
         <h2> </h2>
         <div className={styles.x}>
           <Button
-            className="activeBtn"
+            className={styles.x}
             type="button"
             label={""}
             icon={<GrAddCircle />}

@@ -11,11 +11,24 @@
         display: flex;
         align-items: center;
         justify-content: start;
-    } 
+    }
 
     .buttonsContainer {
+        width: fit-content;
         display: flex;
         align-items: center;
         justify-content: start;
+        gap: 10px;
+    }
+
+    .primaryBtn {
+        color: $textPrimary1;
+        border-radius: 5px;
+    }
+
+    .secondaryBtn {
+        color: $textSecondary;
+        background: $bgBtn;
+        border-radius: 5px;
     }
 }

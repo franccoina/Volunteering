@@ -12,16 +12,14 @@ const HeaderOffline: React.FC = () => {
         </div>
         <div className={styles.buttonsContainer}>
           <Button
-            className="primaryBtn"
+            className={styles.primaryBtn}
             type="button"
             label={"Iniciar Sesión"}
-            icon={<GrAddCircle/>}
           />
           <Button
-            className="secondaryBtn"
+            className={styles.secondaryBtn}
             type="button"
             label={"Registrarse"}
-            icon={<GrAddCircle/>}
             />
         </div>
     </div>

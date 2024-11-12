@@ -96,29 +96,6 @@ p, li, label, select, input, textarea{
   gap: 20px;
 }
 
-.submitBtn{
-  color: $textSecondary;
-  background-color: $bgBtn;
-  border-radius: 10px;
-  width: 100%;
-  height: 30px;
-}
-
-.primaryBtn {
-  color: $textPrimary1;
-  border-radius: 10px;
-  width: 100%;
-  height: 100%;
-}
-
-.secondaryBtn {
-  color: $textSecondary;
-  background-color: $bgBtn;
-  border-radius: 10px;
-  width: 100%;
-  height: 100%;
-}
-
 .inactiveBtn {
   color: $textPrimary2;
   background-color: $bgInactive;

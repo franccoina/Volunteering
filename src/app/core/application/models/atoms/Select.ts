@@ -3,4 +3,5 @@ export interface ISelectProps {
     name: string;
     value: string;
     options: any[];
+    className?: string;
 }

@@ -5,6 +5,7 @@ import styles from "./Textarea.module.scss"
 const Textarea: React.FC<ITextareaProps> = ({
     placeholder,
     value,
+    className,
     name,
     onChange,
     id,
@@ -12,7 +13,7 @@ const Textarea: React.FC<ITextareaProps> = ({
 }) => {
     return (
         <textarea
-            className={styles.textarea}
+            className={`${styles.textarea} ${className}`}
             placeholder={placeholder}
             name={name}
             value={value}

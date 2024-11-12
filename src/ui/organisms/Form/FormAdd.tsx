@@ -56,19 +56,7 @@ const FormAdd: React.FC = () => {
     return (
         <form className={styles.forms} onSubmit={handleSubmit}>
             <h2> </h2>
-            <FormInput
-                text="Título" htmlFor="title" className="modal-fields" placeholder="Título" type="text"
-                name="title" value={formData.title} onChange={handleChange} />
-            <FormTextarea
-                text="Descripción" htmlFor="description" className="modal-fields" placeholder="Descripción"
-                name="description" value={formData.description} onChange={handleChange} />
-            <FormSelect
-                text="Estado" htmlFor="status" className="modal-fields" options={['ACTIVE', 'INACTIVE']}
-                name="status" value={formData.status} onChange={handleChange} />
-            <FormSelect
-                text="Compañía" htmlFor="companyId" className="modal-fields" options={[]}
-                name="companyId" value={formData.companyId} onChange={handleChange} />
-            <Button className='submitBtn' type='submit' label="Agregar" />
+            <Button className={styles.submitBtn} type='submit' label="Agregar" />
         </form>
     );
 };
