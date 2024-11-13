@@ -1,9 +1,9 @@
+import AuthTemplate from "@/ui/templates/auth/AuthTemplate";
+
 export default function Signup() {
   return (
-    <div className="">
-      <main className="">
-        
-      </main>
-    </div>
+    <>
+        <AuthTemplate />
+    </>
   );
 }

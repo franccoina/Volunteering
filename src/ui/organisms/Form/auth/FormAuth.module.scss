@@ -1,0 +1,50 @@
+@import "@/ui/themes/Variables.scss";
+
+.form {
+    background-color: $bgSecondary;
+    border: 1px solid $borders ;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    margin: 0 auto;
+    padding: 25px;
+
+    .h1 {
+        text-align: center;
+        margin-bottom: 15px;
+        font-size: 20px;
+        font-weight: bold;
+        color: $textPrimary1;
+    }
+
+    .p {
+        margin-bottom: 1rem;
+        color: $textPrimary2;
+        text-align: center;
+    }
+
+    .button {
+        background-color: $bgBtn;
+        padding: 8px 12px;
+        border-radius: 5px;
+        color: $textSecondary;
+        font-weight: bold;
+        margin-bottom: 15px;
+        width: 100%;
+    }
+
+    .div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $textPrimary1;
+        margin-bottom: 15px;
+    }
+
+    .link {
+        color: $textLink;
+    }
+}

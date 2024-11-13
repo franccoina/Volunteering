@@ -1,7 +1,7 @@
 @import "@/ui/themes/Variables.scss";
 
 .sidebarContainer {
-    width: 20%;
+    width: 250px;
     height: 100%;
     background-color: $bgSecondary;
     display: flex;
@@ -14,13 +14,15 @@
         display: flex;
         align-items: center;
         justify-content: start;
-        height: 60px;
         width: 100%;
+        height: 60px;
     }
 
     .mainTitle {
-        padding: 10px;
+        padding: 15px;
         color: $textPrimary1;
+        width: 100%;
+        height: 100%;
     }
 
     .linksContainer {
@@ -35,11 +37,15 @@
         > * {
             cursor: pointer;
             width: 100%;
-            padding-left: 10px;
+            padding-left: 15px;
         }
     
-        @media (max-width: 768px) {
+        @media (max-width: 770px) {
             gap: 10px;
         }
+    }
+
+    .activeLink{
+        background-color: $borders;
     }
 }

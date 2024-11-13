@@ -12,13 +12,13 @@ const HeaderOffline: React.FC = () => {
       </div>
       <div className={styles.buttonsContainer}>
         <Button
-          className={styles.primaryBtn}
+          className={"primaryBtn"}
           type="button"
         >
           <Links className={styles.backLink} href="/login" label="Iniciar Sesión" />
         </Button>
         <Button
-          className={styles.secondaryBtn}
+          className={"secondaryBtn"}
           type="button"
         >
           <Links className={styles.backLink} href="/signup" label="Registrarse" />

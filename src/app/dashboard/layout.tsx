@@ -9,11 +9,11 @@ import { Sidebar } from "@/ui/organisms/Sidebar/SidebarUser";
 const DashLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     return (
         <ModalProvider>
-            <div className={styles.onlineLayout}>
+            <div className={styles.dashboard}>
                 <Sidebar />
-                <div className={styles.dashPages}>
+                <div className={styles.dashContent}>
                     <HeaderOnline />
-                    {children}
+                        {children}
                     <Modal />
                 </div>
             </div>

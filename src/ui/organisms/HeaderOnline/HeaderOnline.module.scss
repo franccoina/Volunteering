@@ -2,7 +2,6 @@
 
 .headerContainer {
     width: 100%;
-    height: 60px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -24,17 +23,11 @@
         gap: 10px;
     }
 
-    .secondaryBtn {
-        background: $bgBtn;
-        border-radius: 5px;
-        color: $textSecondary;
-
-        &:hover {
-            background: $hoverBtn;
-        }
+    .mainTitle {
+        color: $textPrimary1;
     }
 
-    .mainTitle {
+    .profileLink {
         color: $textPrimary1;
     }
 }

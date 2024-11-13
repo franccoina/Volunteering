@@ -2,11 +2,12 @@
 
 .headerContainer {
     width: 100%;
+    position: fixed;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-    height: 60px;
+    padding: 10px;
 
     .titleContainer {
         display: flex;
@@ -20,27 +21,6 @@
         align-items: center;
         justify-content: start;
         gap: 10px;
-    }
-
-    .primaryBtn {
-        border-radius: 5px;
-
-        >* {
-            color: $textPrimary1;
-        }
-    }
-
-    .secondaryBtn {
-        background: $bgBtn;
-        border-radius: 5px;
-
-        &:hover {
-            background: $hoverBtn;
-        }
-
-        >* {
-            color: $textSecondary;
-        }
     }
 
     .mainTitle {

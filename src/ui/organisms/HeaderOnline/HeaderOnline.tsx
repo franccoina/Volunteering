@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Button from "../../atoms/Button/Button";
-import FormAdd from "../Form/FormAdd";
+import FormAdd from "../Form/projects/FormProjects";
 import Links from "@/ui/atoms/Link/Link";
 import { useModalContext } from "@/ui/contexts/ModalContext";
 import styles from "./HeaderOnline.module.scss";
@@ -27,14 +27,14 @@ const HeaderOnline: React.FC = () => {
       </div>
       <div className={styles.buttonsContainer}>
         <Button
-          className={styles.secondaryBtn}
+          className={"secondaryBtn"}
           type="button"
           label="Descargar Reporte"
           icon={<LuFileSpreadsheet />}
         >
         </Button>
         <Button
-          className={styles.secondaryBtn}
+          className={"secondaryBtn"}
           type="button"
           onClick={handleModal}
           label="Nuevo Proyecto"
@@ -43,8 +43,8 @@ const HeaderOnline: React.FC = () => {
         </Button>
         <Links
           href="/"
-          className={styles.logoutLink}
-          label={"Logout"}
+          className={styles.profileLink}
+          label={"Profile"}
           icon={<GrAddCircle />}
         />
       </div>

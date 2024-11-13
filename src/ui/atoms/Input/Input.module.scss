@@ -1,11 +1,10 @@
 @import "@/ui/themes/Variables.scss";
 
 .input {
-    background-color: #fff; 
     width: 100%;  
     height: 100%;        
-    padding: 10px;        
-    border: 1px solid #ccc; 
+    padding: 8px;        
+    border: 1px solid $borders; 
     border-radius: 5px;
     
     &:focus {
@@ -13,7 +12,18 @@
     }
     
     &:disabled {
-        background-color: #f5f5f5;
+        background-color: $bgInactive;
         cursor: not-allowed;    
+    }
+
+    .div{
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .p {
+        margin-top: 0.5rem;
+        color: $textError;
+        font-size: 0.8rem;
     }
 }

@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
-import Button from '@/ui/atoms/Button/Button';
-import FormSelect from '@/ui/molecules/FormSelect/FormSelect';
-import FormTextarea from '@/ui/molecules/FormTextarea/FormTextarea';
-import FormInput from '@/ui/molecules/FormInput/FormInput';
 import { toast } from 'react-toastify';
-import styles from "./Forms.module.scss";
+import styles from "./FormProjects.module.scss";
 
 const FormAdd: React.FC = () => {
     const url = ""
@@ -56,19 +52,6 @@ const FormAdd: React.FC = () => {
     return (
         <form className={styles.forms} onSubmit={handleSubmit}>
             <h2> </h2>
-            <FormInput
-                text="Título" htmlFor="title" className="modal-fields" placeholder="Título" type="text"
-                name="title" value={formData.title} onChange={handleChange} />
-            <FormTextarea
-                text="Descripción" htmlFor="description" className="modal-fields" placeholder="Descripción"
-                name="description" value={formData.description} onChange={handleChange} />
-            <FormSelect
-                text="Estado" htmlFor="status" className="modal-fields" options={['ACTIVE', 'INACTIVE']}
-                name="status" value={formData.status} onChange={handleChange} />
-            <FormSelect
-                text="Compañía" htmlFor="companyId" className="modal-fields" options={[]}
-                name="companyId" value={formData.companyId} onChange={handleChange} />
-            <Button className={styles.submitBtn} type='submit' label="Guardar" />
         </form>
     );
 };

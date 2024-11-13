@@ -11,9 +11,12 @@ const Input: React.FC<IInputProps> = ({
     id,
     key,
     className,
-    disabled = false
+    error,
+    disabled = false,
+    ...props
 }) => {
     return (
+        <div className={styles.div}>
         <input
             className={`${styles.input} ${className}`}
             type={type}
@@ -24,7 +27,10 @@ const Input: React.FC<IInputProps> = ({
             id={id}
             key={key}
             disabled={disabled}
+            {...props}
         />
+                {error && <p className={styles.p}>{error}</p>}
+                </div>
     );
 };
 
