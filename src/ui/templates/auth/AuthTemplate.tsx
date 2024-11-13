@@ -1,6 +1,6 @@
 'use client'
 import FormLogin  from "@/ui/organisms/Form/auth/FormLogin";
-import FormSignup  from "@/ui/organisms/Form/auth/FormLogin";
+import FormSignup from "@/ui/organisms/Form/auth/FormSignup";
 import styles from "./AuthTemplate.module.scss"
 import { usePathname } from "next/navigation";
 import React from "react";
@@ -12,7 +12,7 @@ const AuthTemplate: React.FC = () => {
         <div className={styles.divContainer}>
             <div className={styles.div}>
                 {
-                    pathname.includes("/signup") ? (
+                    pathname == "/signup" ? (
                         <FormSignup />
                     ) : (
                         <FormLogin />
