@@ -1,0 +1,14 @@
+@import "@/ui/themes/Variables.scss";
+
+.authPages {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .backLink{
+        color: $textQuinary;
+        cursor: pointer;
+        font-size: 15px;
+        align-self: start;
+    }
+}

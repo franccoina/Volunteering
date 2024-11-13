@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState, useCallback } from "react";
-import Pagination from "../molecules/Pagination/Pagination";
-import HeaderOnline from "../organisms/Header/HeaderOnline";
+import Pagination from "../../molecules/Pagination/Pagination";
 
 const OnlineTemplate: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -60,7 +59,6 @@ const OnlineTemplate: React.FC<{ children: React.ReactNode }> = ({
         <p>Cargando...</p>
       ) : (
         <>
-          <HeaderOnline/>
           <div className="cards-list">
             {cardData.map((item) => (
               <></>

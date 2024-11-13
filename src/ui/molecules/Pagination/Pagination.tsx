@@ -15,14 +15,14 @@ const Pagination: React.FC<IPaginationProps> = ({
     return (
         <div className={styles.pagination}>
             <Button
-                className='paginationBtn'
+                className={styles.paginationBtn}
                 type="button"
                 onClick={onPrevious}
                 icon={<BsChevronLeft />}
             />
             <p>Página {currentPage} de {totalPages}</p>
             <Button
-                className='paginationBtn'
+                className={styles.paginationBtn}
                 type="button"
                 onClick={onNext}
                 icon={<BsChevronRight />}

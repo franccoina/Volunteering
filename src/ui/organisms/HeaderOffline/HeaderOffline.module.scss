@@ -22,13 +22,27 @@
     }
 
     .primaryBtn {
-        color: $textPrimary1;
         border-radius: 5px;
+
+        >* {
+            color: $textPrimary1;
+        }
     }
 
     .secondaryBtn {
-        color: $textSecondary;
         background: $bgBtn;
         border-radius: 5px;
+
+        &:hover {
+            background: $hoverBtn;
+        }
+
+        >* {
+            color: $textSecondary;
+        }
+    }
+
+    .mainTitle {
+        color: $textQuinary;
     }
 }

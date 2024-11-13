@@ -90,6 +90,19 @@ const FormEdit: React.FC<IFormProps> = ({ idToEdit }) => {
     return (
         <form className={styles.forms} onSubmit={handleSubmit}>
             <h2> </h2>
+            <FormInput
+                text="Título" className="modal-fields" htmlFor="title" placeholder="Título"
+                name="title" value={formData.title} onChange={handleChange} />
+            <FormTextarea
+                text="Descripción" className="modal-fields" htmlFor="description" placeholder="Descripción"
+                name="description" value={formData.description} onChange={handleChange} />
+            <FormSelect
+                text="Estado" className="modal-fields" htmlFor="status" options={['ACTIVE', 'INACTIVE']}
+                name="status" value={formData.status} onChange={handleChange} />
+            <FormSelect
+                text="Compañía" className="modal-fields" htmlFor="companyId"
+                options={[]}
+                name="companyId" value={formData.companyId} onChange={handleChange} />
             <Button className={styles.submitBtn} type='submit' label="Guardar" />
         </form>
     );

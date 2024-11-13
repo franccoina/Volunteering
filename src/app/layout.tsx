@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Urbanist } from "next/font/google";
 import { ToastContainer } from "react-toastify";
-import ClientLayout from "@/ui/layouts/ClientLayout";
 import Head from 'next/head';
 import "react-toastify/dist/ReactToastify.css"; 
 import "@/ui/themes/GlobalStyling.scss"
@@ -49,9 +48,7 @@ export default function RootLayout({
       <body
         className={urbanist.className}
       >
-        <ClientLayout>
           {children}
-        </ClientLayout>
         <ToastContainer />
       </body>
     </html>
