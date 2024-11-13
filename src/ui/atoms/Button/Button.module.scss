@@ -3,13 +3,18 @@
 .button {
     cursor: pointer;
     display: flex;
-    gap: 5px;
+    gap: 10px;
     font-size: 12px;
     align-items: center;
     justify-content: center;
     transition: 1s ease-in-out;
+    padding: 10px;
 
     &:hover {
         transition: background-color 0.3s ease-in-out;
+    }
+
+    & a{
+        padding: 0;
     }
 }

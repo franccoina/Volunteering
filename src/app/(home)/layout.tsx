@@ -1,10 +1,11 @@
 'use client';
 import React from "react";
 import HeaderOffline from "../../ui/organisms/HeaderOffline/HeaderOffline";
+import styles from "./Home.module.scss";
 
 const HomeLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     return (
-        <div className="offlineLayout">
+        <div className={styles.offlineLayout}>
             <HeaderOffline />
             {children}
         </div>

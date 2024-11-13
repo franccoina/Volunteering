@@ -4,6 +4,6 @@ export interface ILinkProps {
     label: string;
     target?: '_blank' | '_self';
     onClick?: () => void;
-    children?: React.ReactNode;
+    icon?: React.ReactNode;
     className?: string;
 }

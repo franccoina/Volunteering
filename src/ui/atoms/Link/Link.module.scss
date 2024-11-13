@@ -7,6 +7,9 @@
     color: $textPrimary1;
     font-weight: 400;
     transition: 0.4s;
+    display: flex;
+    gap: 10px;
+    align-items: center;
 
     &:hover {
         font-weight: 500;

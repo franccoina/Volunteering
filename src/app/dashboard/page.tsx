@@ -1,9 +1,9 @@
+import styles from "./Dash.module.scss";
+
 export default function Dashboard() {
   return (
-      <div className="">
-        <main className="">
-        
-        </main>
+      <div className={styles.dashPages}>
+
       </div>
   );
 }

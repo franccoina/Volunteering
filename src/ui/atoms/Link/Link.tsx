@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { ILinkProps } from '@/app/core/application/models/atoms/Link';
 import styles from "./Link.module.scss"
 
-const Links: React.FC<ILinkProps> = ({key, className, href, target, label, onClick, children }) => {
+const Links: React.FC<ILinkProps> = ({key, icon, className, href, target, label, onClick }) => {
     return (
         <Link
             key={key}
@@ -13,7 +13,7 @@ const Links: React.FC<ILinkProps> = ({key, className, href, target, label, onCli
             target={target}
             className={`${styles.link} ${className}`}
         >
-            {children || label}
+            {icon} {label}
         </Link>
     );
 };
