@@ -3,4 +3,6 @@ export interface IOptionProps {
     value: string;
     placeholder: string;
     disabled?: boolean;
+    title: string;
+    className?: string;
 }

@@ -1,26 +1,12 @@
 import React from 'react';
-import styled from 'styled-components';
-import { IButtonProps } from '@/models/atoms/Button';
+import { IButtonProps } from '@/app/core/application/models/atoms/Button';
+import styles from "./Button.module.scss"
 
-const StyledButton = styled.button`
-    cursor: pointer;
-    display: flex;
-    gap: 5px;
-    font-size: 12px;
-    align-items: center;
-    justify-content: center;
-    transition: 1s ease-in-out;
-
-    &:hover {
-      transition: background-color 0.3s ease-in-out;
-    }
-`;
-
-const Button: React.FC<IButtonProps> = ({ className, label, type, icon, onClick }) => {
+const Button: React.FC<IButtonProps> = ({ children, className, label, type, icon, onClick }) => {
   return (
-    <StyledButton className={className} type={type} onClick={onClick}>
-      {icon}{label}
-    </StyledButton>
+    <button className={`${styles.button} ${className}`} type={type} onClick={onClick}>
+      {icon}{label}{children}
+    </button>
   );
 };
 

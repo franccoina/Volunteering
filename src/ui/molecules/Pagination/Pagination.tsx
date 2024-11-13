@@ -2,15 +2,8 @@
 import React from 'react';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import Button from '@/ui/atoms/Button/Button';
-import styled from 'styled-components';
-import { IPaginationProps } from '@/models/molecules/Pagination';
-
-const NavigationContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-`;
+import { IPaginationProps } from '@/app/core/application/models/molecules/Pagination';
+import styles from "./Pagination.module.scss";
 
 const Pagination: React.FC<IPaginationProps> = ({
     currentPage,
@@ -20,21 +13,21 @@ const Pagination: React.FC<IPaginationProps> = ({
 }) => {
 
     return (
-        <NavigationContainer>
+        <div className={styles.pagination}>
             <Button
-                className='paginationBtn'
+                className={styles.paginationBtn}
                 type="button"
                 onClick={onPrevious}
                 icon={<BsChevronLeft />}
             />
             <p>Página {currentPage} de {totalPages}</p>
             <Button
-                className='paginationBtn'
+                className={styles.paginationBtn}
                 type="button"
                 onClick={onNext}
                 icon={<BsChevronRight />}
             />
-        </NavigationContainer>
+        </div>
     );
 };
 

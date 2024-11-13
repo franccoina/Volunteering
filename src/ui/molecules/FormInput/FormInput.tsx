@@ -1,14 +1,40 @@
-import React from "react";
-import Label from "@/ui/atoms/Label/Label";
+"use client";
 import Input from "@/ui/atoms/Input/Input";
-import { IFormInputProps } from "@/models/molecules/FormInput";
+import Label from "@/ui/atoms/Label/Label";
+import styles from "./FormInput.module.scss"
+import { Controller, FieldValues } from "react-hook-form";
+import { IFormInputProps } from "@/app/core/application/models/molecules/FormInput";
 
-const FormInput: React.FC<IFormInputProps> = ({ text, htmlFor, className, type, placeholder,
-    key, name, value, onChange, id, disabled }) => {
+const FormInput = <T extends FieldValues>({
+    label,
+    type,
+    name,
+    control,
+    error,
+    id,
+    placeholder,
+}: IFormInputProps<T>) => {
     return (
-        <div key={key} className={className}>
-            <Label htmlFor={htmlFor} text={text}></Label>
-            <Input type={type} placeholder={placeholder} name={name} value={value} onChange={onChange} id={id} disabled={disabled} />
+        <div className={styles.div}>
+            <Label
+                htmlFor={id || label.toLowerCase()}
+                className={styles.label}
+                label={label}
+            >
+            </Label>
+            <Controller
+                name={name}
+                control={control}
+                render={({ field }) => (
+                    <Input
+                        id={id || label.toLowerCase()}
+                        type={type}
+                        error={error?.message}
+                        placeholder={placeholder || `Ingrese su ${label.toLowerCase()}`}
+                        {...field}
+                    />
+                )}
+            />
         </div>
     );
 };

@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "./Variables.scss";
+
+* {
+  font-family: var(--font-principal);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  background: $bgPrimary;
+  background-attachment: fixed;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bolder;
+}
+
+p, li, label, select, input, textarea{
+  color: $textPrimary1;
+  line-height: 1.5;
+  font-weight: 300;
+  font-size: 12px;
+  margin: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.template {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tertiaryBtn {
+  border-radius: 5px;
+  background: $bgSecondary;
+  border: 1px solid $borders;
+  color: $textPrimary1;
+
+  & a {
+      color: $textPrimary1;
+  }
+}
+
+.secondaryBtn {
+  background: $bgBtn;
+  border-radius: 5px;
+  color: $textSecondary;
+
+  &:hover {
+      background: $hoverBtn;
+  }
+
+  & a {
+      color: $textSecondary;
+  }
+}
+
+.primaryBtn {
+  border-radius: 5px;
+  color: $textPrimary1;
+
+  & * {
+      color: $textPrimary1;
+  }
+}
+
+.deleteBtn {
+  color: $textSecondary;
+  background: $bgTertiary;
+  border-radius: 10px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  :hover {
+    background: $hoverBgTertiary;
+  }
+
+  & button{
+    border-radius: 10px;
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.editBtn {
+  color: $textQuaternary;
+  border: 1px solid $borders;
+  border-radius: 10px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & button{
+    border-radius: 10px;
+    width: 30px;
+    height: 30px;
+  }
+}

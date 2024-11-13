@@ -1,0 +1,33 @@
+@import "@/ui/themes/Variables.scss";
+
+.headerContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px;
+    background-color: $bgSecondary;
+
+    .titleContainer {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+    }
+
+    .buttonsContainer {
+        width: fit-content;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        gap: 10px;
+    }
+
+    .mainTitle {
+        color: $textPrimary1;
+    }
+
+    .profileLink {
+        color: $textPrimary1;
+    }
+}

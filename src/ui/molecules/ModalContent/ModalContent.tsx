@@ -1,23 +1,11 @@
-import styled from "styled-components";
-import { IContentModalProps } from "@/models/molecules/ModalContent";
+import { IContentModalProps } from "@/app/core/application/models/molecules/ModalContent";
+import styles from "./ModalContent.module.scss";
 
-const Content = styled.div`
-    background-color:  ${({ theme }) => theme.colors.bgSecondary};
-    border-radius: 10px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: end;
-    justify-content: center;
-    min-width: 200px;
-    width: 100%;
-    max-width: 400px;
-`;
-const ModalContent: React.FC<IContentModalProps> = ({children}) => {
+const ModalContent: React.FC<IContentModalProps> = ({children, className}) => {
     return (
-        <Content>
+        <div className={`${styles.modalContent} ${className}`}>
             {children}
-        </Content>
+        </div>
     );
 };
 

@@ -1,0 +1,29 @@
+@import "@/ui/themes/Variables.scss";
+
+.headerContainer {
+    width: 100%;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px;
+
+    .titleContainer {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+    }
+
+    .buttonsContainer {
+        width: fit-content;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        gap: 10px;
+    }
+
+    .mainTitle {
+        color: $textQuinary;
+    }
+}
