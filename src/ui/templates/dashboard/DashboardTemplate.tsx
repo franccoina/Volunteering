@@ -11,7 +11,6 @@ interface IDashboardTemplateProps {
   pagination: Metadata,
   data: IAllProjectsResponse
 }
-
 const DashboardTemplate = ({ data, pagination}: IDashboardTemplateProps) => {
   const searchParams = useSearchParams();
   const router = useRouter();

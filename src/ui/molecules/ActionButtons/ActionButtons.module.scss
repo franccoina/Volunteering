@@ -10,7 +10,6 @@
   .buttonEdit {
     padding: 8px;
     border-radius: 0.5rem;
-    font-size: 0.8rem;
     font-weight: bold;
     width: 100px;
     background-color: $bgSecondary;
@@ -20,13 +19,13 @@
     align-items: center;
     justify-content: center;
   }
+  
   .buttonDelete {
     padding: 8px;
     border-radius: 0.5rem;
-    font-size: 0.8rem;
     font-weight: bold;
     width: 100px;
-    background-color: $textError;
+    background-color: $bgTertiary;
     color: $textSecondary;
     border: none;
     display: flex;

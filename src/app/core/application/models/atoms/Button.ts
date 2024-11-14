@@ -9,5 +9,5 @@ export interface IButtonProps {
   className?: string;
   disabled?: boolean; 
   label?: string;
-  onClick?: () => void;
+  onClick?: () => unknown;
 }

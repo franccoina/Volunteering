@@ -1,115 +1,139 @@
 "use client";
-import { ErrorResponse, FieldError, ILoginRequest } from "@/app/core/application/dto";
+import { IRegisterRequest } from "@/app/core/application/dto";
 import Button from "@/ui/atoms/Button/Button";
 import FormInput from "@/ui/molecules/FormInput/FormInput";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import styles from "./FormAuth.module.scss"
 import * as yup from "yup";
-import styles from "./FormAuth.module.scss";
-import Links from "@/ui/atoms/Link/Link";
+import { toast } from "react-toastify";
+import { FormSelect } from "@/ui/molecules/FormSelect/FormSelect";
+import { FormFile } from "@/ui/molecules/FormFile/FormFile";
 
-const loginSchema = yup.object().shape({
+const signupSchema = yup.object().shape({
     email: yup
         .string()
-        .email("El correo es inválido")
-        .required("El correo el obligatorio"),
+        .email('Email inválido')
+        .required('Email requerido'),
     password: yup
         .string()
-        .min(8, "La contraseña debe tener  al menos 8  caracteres")
-        .required("La contraseña es obligatoria"),
+        .min(8, 'La contraseña debe tener al menos 8 caracteres')
+        .required('Contraseña requerida'),
+    name: yup
+        .string()
+        .min(1, 'El nombre de usuario debe tener al menos 1 caracter')
+        .required('Nombre de usuario requerido'),
+    role: yup
+        .string()
+        .required('Rol requerido'),
+    photo: yup
+        .mixed<File>()
+        .nullable()
+        .notRequired()
 });
 
-const FormSignup: React.FC = () => {
+const FormSignup = () => {
+    const router = useRouter();
     const {
         control,
         handleSubmit,
-        setError,
-        formState: { errors },
-    } = useForm<ILoginRequest>({
+        formState: { errors }
+    } = useForm<IRegisterRequest>({
         mode: "onChange",
         reValidateMode: "onChange",
-        resolver: yupResolver(loginSchema),
+        resolver: yupResolver(signupSchema)
     });
 
-    const router = useRouter()
-    const handleLogin = async (data: ILoginRequest) => {
-        console.log(data);
-        //SERVICE LOGIN
+    const handleRegister = async (data: IRegisterRequest) => {
         try {
-            const result = await signIn("credentials", {
-                redirect: false,
-                email: data.email,
-                password: data.password,
+            const formData = new FormData();
+
+            formData.append("email", data.email);
+            formData.append("password", data.password);
+            formData.append("name", data.name);
+            formData.append("role", data.role);
+
+            if (data.photo) {
+                formData.append("photo", data.photo);
+            }
+
+            const response = await fetch("/api/users/create-user", {
+                method: "POST",
+                body: formData
             });
 
-            console.log(result);
-
-            if (result?.error) {
-                console.log("Ocurrio un error", JSON.parse(result.error));
-                handleError(JSON.parse(result.error))
-                return;
+            if (!response.ok) {
+                throw new Error("Error al registrar el usuario");
             }
-            router.push("/dashboard/projects")
+            toast.success('Usuario registrado con éxito.');
+            router.push("/login")
+            return await response.json();
+
         } catch (error) {
-            console.log(error);
+            console.error("Error en el POST:", error);
+            toast.error("No fue posible registrar el usuario. Intenta de nuevo.")
+            throw error;
         }
     };
 
-    const handleError = (error: unknown) => {
-        const erroData = error as ErrorResponse;
-        if (erroData && erroData.errors) {
-            if (Array.isArray(erroData.errors) && "field" in erroData.errors[0]) {
-                erroData.errors.forEach((fieldError) => {
-                    const { field, error } = fieldError as FieldError;
-                    setError(field as keyof ILoginRequest, {
-                        message: error,
-                    });
-                });
-            } else {
-                if ("message" in erroData.errors[0]) {
-                    setError("email", {
-                        message: erroData.errors[0].message,
-                    });
-                }
-            }
-        }
-    };
 
     return (
-        <form
-            className={styles.form}
-            onSubmit={handleSubmit(handleLogin)}
-        >
+        <form className={styles.form} onSubmit={handleSubmit(handleRegister)}>
             <h1 className={styles.h1}>Registrarse</h1>
-            <p className={styles.p}>Ingresa tus credenciales para acceder a tu cuenta</p>
-            <FormInput<ILoginRequest>
+
+            <FormInput<IRegisterRequest>
                 control={control}
                 type="email"
-                label="Correo Electrónico"
                 name="email"
+                label="Email"
                 error={errors.email}
-                placeholder="Ingresa tu correo"
+                placeholder="Ingrese Email"
             />
-            <FormInput<ILoginRequest>
+
+            <FormInput<IRegisterRequest>
                 control={control}
                 type="password"
-                label="Contraseña"
                 name="password"
+                label="Contraseña"
                 error={errors.password}
-                placeholder="Ingresa tu contraseña"
+                placeholder="Ingrese Contraseña"
             />
+
+            <FormInput<IRegisterRequest>
+                control={control}
+                type="text"
+                name="name"
+                label="Nombre"
+                error={errors.name}
+                placeholder="Ingrese Nombre"
+            />
+
+            <div className={styles.colspan}>
+                <FormSelect<IRegisterRequest>
+                    control={control}
+                    options={[
+                        { value: "organizer", label: "Organizador" },
+                        { value: "user", label: "Usuario" }
+                    ]}
+                    name="role"
+                    label="Rol"
+                    error={errors.role}
+                />
+
+                <FormFile<IRegisterRequest>
+                    control={control}
+                    name="photo"
+                    label="Foto de Perfil"
+                    error={errors.photo}
+                />
+            </div>
             <Button
                 type="submit"
-                className={styles.button}
-                label="Iniciar Sesión"
-            />
-            <Links href="/forgot-password" label="¿Olvidáste tu contraseña?" className={styles.link} />
-            <p className={styles.div}>
-                ¿No tienes una cuenta?{' '}
-                <Links href="/register" label="Regístrate aquí" className={styles.link} />
-            </p>
+                className={"secondaryBtn"}
+            >
+                Registrarse
+            </Button>
         </form>
     );
 };

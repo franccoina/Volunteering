@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import styles from "./FormAuth.module.scss";
+import { toast } from "react-toastify";
 import Links from "@/ui/atoms/Link/Link";
 
 const loginSchema = yup.object().shape({
@@ -51,9 +52,11 @@ const FormLogin: React.FC = () => {
                 handleError(JSON.parse(result.error))
                 return;
             }
-            router.push("/dashboard/projects")
+            router.push("/dashboard")
+            toast.success("Se ha iniciado sesión. Bienvenido.")
         } catch (error) {
             console.log(error);
+            toast.error("No fue posible iniciar sesión. Intenta de nuevo.")
         }
     };
 
@@ -102,13 +105,13 @@ const FormLogin: React.FC = () => {
             />
             <Button
                 type="submit"
-                className={styles.button}
+                className={"secondaryBtn"}
                 label="Iniciar Sesión"
             />
             <Links href="/forgot-password" label="¿Olvidáste tu contraseña?" className={styles.link} />
             <p className={styles.div}>
                 ¿No tienes una cuenta?{' '}
-                <Links href="/register" label="Regístrate aquí" className={styles.link} />
+                <Links href="/signup" label="Regístrate aquí" className={styles.link} />
             </p>
         </form>
     );

@@ -173,7 +173,7 @@ const FormProject: React.FC<IProjectsFormProps> = ({ initialData }) => {
 
             <Button
                 type="submit"
-                className={styles.button}
+                className={"secondaryBtn"}
             >
                 {initialData ? "Actualizar" : "Agregar"}
             </Button>

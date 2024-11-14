@@ -18,7 +18,6 @@ const FormInput = <T extends FieldValues>({
         <div className={styles.div}>
             <Label
                 htmlFor={id || label.toLowerCase()}
-                className={styles.label}
                 label={label}
             >
             </Label>

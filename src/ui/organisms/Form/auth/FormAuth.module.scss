@@ -26,21 +26,22 @@
         text-align: center;
     }
 
-    .button {
-        background-color: $bgBtn;
-        padding: 8px 12px;
-        border-radius: 5px;
-        color: $textSecondary;
-        font-weight: bold;
-        margin-bottom: 15px;
-        width: 100%;
-    }
-
     .div {
         display: flex;
         justify-content: center;
         align-items: center;
         color: $textPrimary1;
+    }
+
+    .colspan {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+
+        @media (max-width: 1024px) {
+            flex-direction: column;
+        }
     }
 
     .link {
