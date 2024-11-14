@@ -1,6 +1,7 @@
+import { Metadata } from "@/app/core/application/dto";
+
 export interface IPaginationProps {
-    currentPage: number;
-    totalPages: number;
     onNext: () => void;
     onPrevious: () => void;
+    pagination: Metadata;
 }

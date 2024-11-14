@@ -1,59 +1,184 @@
-import React, { useState } from 'react';
-import { toast } from 'react-toastify';
-import styles from "./FormProjects.module.scss";
+"use client";
+import { Datum, ErrorResponse, FieldError, IProjectRequest } from "@/app/core/application/dto";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import styles from "./FormProjects.module.scss"
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { EndpointProjects } from "@/app/core/application/dto/model/projects.enum";
+import Button from "@/ui/atoms/Button/Button";
+import FormInput from "@/ui/molecules/FormInput/FormInput";
 
-const FormAdd: React.FC = () => {
-    const url = ""
+interface IProjectsFormProps {
+    initialData?: Datum | null;
+}
 
-    const [formData, setFormData] = useState<{ [key: string]: string }>({
+const initialProjectsData = {
+    title: "",
+    description: "",
+    startDate: new Date(),
+    endDate: new Date(),
+};
 
+const projectsSchema = yup.object().shape({
+    title: yup.string().required("El título es obligatorio"),
+    description: yup.string().required("La descripción es obligatoria"),
+    startDate: yup.date().required("El inicio del proyecto es obligatorio"),
+    endDate: yup.date().required("La fecha de fin del proyecto es obligatoria"),
+});
+
+const FormProject: React.FC<IProjectsFormProps> = ({ initialData }) => {
+    const {
+        control,
+        handleSubmit,
+        setError,
+        setValue,
+        reset,
+        formState: { errors },
+    } = useForm<IProjectRequest>({
+        mode: "onChange",
+        reValidateMode: "onChange",
+        resolver: yupResolver(projectsSchema),
+        defaultValues: initialProjectsData,
     });
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
-    };
+    const router = useRouter();
+    // Rellenar el formulario con los valores iniciales (si existen)
+    useEffect(() => {
+        if (initialData) {
+            setValue("title", initialData.title);
+            setValue("description", initialData.description);
+            setValue("startDate", initialData.startDate);
+            setValue("endDate", initialData.endDate);
+        }
+    }, [initialData, setValue]);
 
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-
-        const data = {
-
-        };
-
+    // Función para crear un servicio
+    const handleCreateProject = async (data: IProjectRequest) => {
         try {
-            const response = await fetch(url, {
+            const res = await fetch(EndpointProjects.CREATE_PROJECT, {
                 method: "POST",
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': "*/*"
+                    "Content-Type": "application/json",
                 },
                 body: JSON.stringify(data),
             });
-
-            if (!response.ok) {
-                throw new Error("Network response was not ok");
+            if (!res.ok) {
+                throw new Error("Error creando el proyecto");
             }
+            const createdProject = await res.json();
+            reset(initialProjectsData);
+            router.refresh();
 
-            setFormData({
+            console.log("Proyecto creado", createdProject);
+        } catch (error) {
+            console.error("Error creando proyecto", error);
+            handleError(error);
+        }
+    };
 
+    // Función para actualizar un servicio
+    const handleUpdateProject = async (data: IProjectRequest) => {
+        const id = (initialData?.id)?.toString();
+        if (!id) {
+            throw new Error("Proyecto no encontrado o sin ID");
+        }
+
+        try {
+            const res = await fetch(EndpointProjects.UPDATE_PROJECT.replace(":id", id), {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
             });
+            if (!res.ok) {
+                throw new Error("Error actualizando proyecto");
+            }
+            const updatedProject = await res.json();
+            router.refresh();
+            console.log("Proyecto actualizado", updatedProject);
+        } catch (error) {
+            console.error("Error actualizando proyecto", error);
+            handleError(error);
+        }
+    };
 
-            toast.success("¡Felicidades! Has añadido un nuevo elemento con éxito.")
-        } catch (err) {
-            console.error(err);
-            toast.error("¡Oops! El elemento ingresado no se pudo añadir.")
+    // Función para manejar errores de validación y mostrarlos
+    const handleError = (error: unknown) => {
+        const errorData = error as ErrorResponse;
+        if (errorData && errorData.errors) {
+            if (Array.isArray(errorData.errors) && "field" in errorData.errors[0]) {
+                errorData.errors.forEach((fieldError) => {
+                    const { field, error } = fieldError as FieldError;
+                    setError(field as keyof IProjectRequest, {
+                        message: error,
+                    });
+                });
+            } else {
+                if ("message" in errorData.errors[0]) {
+                    setError("title", {
+                        message: errorData.errors[0].message,
+                    });
+                }
+            }
+        }
+    };
+
+    // Función para manejar el submit del formulario, decide si crear o actualizar
+    const onSubmit = async (data: IProjectRequest) => {
+        if (initialData) {
+            handleUpdateProject(data);
+        } else {
+            handleCreateProject(data);
         }
     };
 
     return (
-        <form className={styles.forms} onSubmit={handleSubmit}>
-            <h2> </h2>
+        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+            <h1 className={styles.h1}>{initialData ? "Editar Proyecto" : "Agregar Proyecto"}</h1>
+
+            <FormInput<IProjectRequest>
+                control={control}
+                type="text"
+                label="Título"
+                name="title"
+                error={errors.title}
+            />
+
+            <FormInput<IProjectRequest>
+                control={control}
+                type="text"
+                label="Descripción"
+                name="description"
+                error={errors.description}
+            />
+
+            <FormInput<IProjectRequest>
+                control={control}
+                type="date"
+                label="Fecha de inicio"
+                name="startDate"
+                error={errors.startDate}
+            />
+
+            <FormInput<IProjectRequest>
+                control={control}
+                type="date"
+                label="Fecha final"
+                name="endDate"
+                error={errors.endDate}
+            />
+
+            <Button
+                type="submit"
+                className={"secondaryBtn"}
+            >
+                {initialData ? "Actualizar" : "Agregar"}
+            </Button>
         </form>
     );
 };
 
-export default FormAdd;
+export default FormProject;

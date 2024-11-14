@@ -1,6 +1,6 @@
 import React from "react";
 
-type ButtonType = "button" | "submit" | "reset";
+export type ButtonType = "button" | "submit" | "reset";
 
 export interface IButtonProps {
   type?: ButtonType;
@@ -9,5 +9,5 @@ export interface IButtonProps {
   className?: string;
   disabled?: boolean; 
   label?: string;
-  onClick?: () => void;
+  onClick?: () => unknown;
 }

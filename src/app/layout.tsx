@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Urbanist } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 import Head from 'next/head';
-import "react-toastify/dist/ReactToastify.css"; 
+import { AuthProvider } from "./auth-provider";
+import "react-toastify/dist/ReactToastify.css";
 import "@/ui/themes/GlobalStyling.scss"
 
 export const metadata: Metadata = {
@@ -48,7 +49,9 @@ export default function RootLayout({
       <body
         className={urbanist.className}
       >
+        <AuthProvider>
           {children}
+        </AuthProvider>
         <ToastContainer />
       </body>
     </html>
