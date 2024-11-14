@@ -1,6 +1,7 @@
 import React from "react";
 
 export type InputType = 'text' | 'email' | 'password' | 'number' | 'tel' | 'url' | 'search' | 'date' | 'checkbox' | 'radio';
+
 export interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     type: InputType;
     placeholder?: string;

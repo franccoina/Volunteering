@@ -1,18 +1,26 @@
 @import "@/ui/themes/Variables.scss";
 
-.forms {
+.form{
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    padding: 20px;
-    border-radius: 10px;
+    align-items: flex-start; 
+    gap: 0.5rem; 
+    padding: 16px;
     width: 100%;
-
-    .submitBtn {
-        color: $textSecondary;
+    .h1{
+        text-align: center;
+        margin-bottom: 0.5rem;
+        font-size: 1.5rem;
+        font-weight: bold;;
+        color: $textPrimary1;
+    }
+    .button {
         background-color: $bgBtn;
-        border-radius: 10px;
-        width: 100%;
-        height: 30px;
+        padding: 0.5rem;
+        border-radius: 0.3rem;
+        color: $textSecondary;
+        font-weight: bold;
+        font-size: 0.8rem;
+        margin-bottom: 1rem;
     }
 }

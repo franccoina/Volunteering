@@ -1,80 +1,78 @@
 "use client";
-import React, { useEffect, useState, useCallback } from "react";
-import Pagination from "../../molecules/Pagination/Pagination";
+import { Datum, IAllProjectsResponse } from "@/app/core/application/dto";
+import { EndpointProjects } from "@/app/core/application/dto/model/projects.enum";
+import TableRow from "@/ui/molecules/TableRows/TableDataRow/TableDataRow";
+import TableHeaderRow from "@/ui/molecules/TableRows/TableHeadRow/TableHeaderRow";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import FormProject from "../Form/projects/FormProjects";
+import styles from "./Table.module.scss"
+import { useModalContext } from "@/ui/contexts/ModalContext";
 
-const OnlineTemplate: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
-  const [cardData, setCardData] = useState<Array<unknown>>([]);
-  const [loading, setLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [totalPages, setTotalPages] = useState<number>(1);
+interface ITableProps {
+    allData: IAllProjectsResponse;
+}
+const Table = ({allData}: ITableProps) => {
+  const { openModal, setModalContent } = useModalContext();
+  const [selectedProject, setSelectedProject] = useState<Datum | null>(null);
 
-  const fetchCardData = useCallback(async (page: string) => {
-    setLoading(true);
-    try {
-      const url = `${page}`;
+  const handleEdit = (project: Datum) => {
+    setSelectedProject(project);
+    setModalContent(
+      (
+        <FormProject initialData = {selectedProject}/>
+      )
+    );
+    openModal()
+  }
 
-      const response = await fetch(url, {
-        method: "GET",
-        headers: { 'Accept': "*/*" },
-      });
+    const router = useRouter();
 
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
+    const handleDelete = async (id: number) => {
+        console.log("ID a eliminar:", id); // Imprime el id para verificar
+      
+        // Convertimos el id a string, ya que la URL espera un string
+        const idString = id.toString();
+        console.log("ID en string:", idString); // Verifica que el ID esté convertido a string
+      
+        const isConfirmed = confirm("¿Estás seguro que deseas borrar el proyecto?");
+        if (!isConfirmed) return;
+      
+        try {
+          const res = await fetch(`${EndpointProjects.DELETE_PROJECT.replace(":id", idString)}`, {
+            method: "DELETE",
+          });
+      
+          if (!res.ok) {
+            throw new Error("Error borrando el proyecto");
+          }
+          console.log("Proyecto eliminado");
+          router.refresh();
+        } catch (error) {
+          console.log("Error al eliminar el proyecto", error);
+        }
+      };
 
-      const responseData = await response.json();
-      setCardData(responseData.content);
-      console.log(responseData);
-
-      const pages = responseData.totalPages;
-      setTotalPages(pages);
-    } catch (error) {
-      console.error("Error fetching data: ", error);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    fetchCardData(currentPage.toString());
-  }, [currentPage, fetchCardData]);
-
-  const handleNext = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const handlePrevious = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
-
-  return (
-    <main className="onlineTemplate">
-      {loading ? (
-        <p>Cargando...</p>
-      ) : (
-        <>
-          <div className="cards-list">
-            {cardData.map((item) => (
-              <></>
+      return (
+        <table className={styles.table}>
+            <TableHeaderRow/>
+          <tbody>
+            {allData.data.map((project) => (
+              <TableRow
+                key={project.id}
+                title={project.title}
+                description={project.description}
+                startDate={project.startDate}
+                endDate={project.endDate}
+                isActive={project.isActive}
+                organizer={project.organizer.name}
+                onDelete={()=> handleDelete(project.id)}
+                onEdit={()=> handleEdit(project)}
+              />
             ))}
-          </div>
-          {children}
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onNext={handleNext}
-            onPrevious={handlePrevious}
-          />
-        </>
-      )}
-    </main>
-  );
-};
+          </tbody>
+        </table>
+      );
+}
 
-export default OnlineTemplate;
+export default Table;
