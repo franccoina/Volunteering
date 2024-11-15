@@ -1,6 +1,6 @@
 'use client';
 import React from "react";
-import HeaderOffline from "../../ui/organisms/HeaderOffline/HeaderOffline";
+import HeaderOffline from "../../../../ui/organisms/HeaderOffline/HeaderOffline";
 import styles from "./Home.module.scss";
 
 const HomeLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
