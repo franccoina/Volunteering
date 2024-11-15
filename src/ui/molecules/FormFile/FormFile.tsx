@@ -20,10 +20,14 @@ export const FormFile = <T extends FieldValues>({
                 control={control}
                 render={({ field }) => (
                     <Input
+                        name={name}
                         className={styles.input}
                         type="file"
                         id={id ?? label.toLowerCase()}
-                        {...field}
+                        onChange={(e) => {
+                            const file = e.target.files?.[0] || null;
+                            field.onChange(file);
+                        }}
                         accept={accept}
                     />
                 )}

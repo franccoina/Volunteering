@@ -7,7 +7,7 @@ export interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement>
     placeholder?: string;
     className?: string;
     name: string;
-    value: string;
+    value?: string;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     id?: string;
     key?: string;
