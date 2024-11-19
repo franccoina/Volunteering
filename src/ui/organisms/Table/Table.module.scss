@@ -1,8 +1,29 @@
 @import "@/ui/themes/Variables.scss";
 
-.table{
+.tableContainer{
     width: 100%;
-    margin: 0 auto;
-    border: none;
-    border-collapse: collapse; 
+    height: auto;
+    padding: 1rem;
+
+    h2{
+        padding-left: 1rem;
+    }
+
+    .table{
+        width: 100%;
+        border: none;
+        border-collapse: collapse; 
+    }
+
+    .inputContainer{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        padding: 10px;
+    }
+
+    .search{
+        width: 40%;
+    }
 }

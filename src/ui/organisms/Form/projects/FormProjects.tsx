@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { EndpointProjects } from "@/app/core/application/dto/model/projects.enum";
 import Button from "@/ui/atoms/Button/Button";
 import FormInput from "@/ui/molecules/FormInput/FormInput";
+import { toast } from "react-toastify";
 
 interface IProjectsFormProps {
     initialData?: Datum | null;
@@ -71,9 +72,9 @@ const FormProject: React.FC<IProjectsFormProps> = ({ initialData }) => {
             reset(initialProjectsData);
             router.refresh();
 
-            console.log("Proyecto creado", createdProject);
+            toast.success("Proyecto creado", createdProject);
         } catch (error) {
-            console.error("Error creando proyecto", error);
+            toast.error("Error creando proyecto", error);
             handleError(error);
         }
     };

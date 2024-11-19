@@ -6,7 +6,7 @@ import { signOut } from "next-auth/react";
 import { LuFolderOpen, LuLogOut } from "react-icons/lu";
 import { usePathname, useRouter } from "next/navigation";
 
-export const Sidebar: React.FC = () => {
+const Sidebar: React.FC = () => {
     const pathname = usePathname();
 
     const router = useRouter();
@@ -33,20 +33,24 @@ export const Sidebar: React.FC = () => {
 
     return (
         <div className={styles.sidebarContainer}>
-            <div className={styles.titleContainer}>
-                <h1 className={styles.mainTitle}>VolunteerConnect</h1>
-            </div>
-            <div className={styles.linksContainer}>
-                {navUserLinks.map((link) => {
-                    const isActive = pathname == (link.href) ? true : false;
-                    const isLogout = (link.isLogout) ? handleLogout : clickedLink;
+            <div className={styles.sidebarContent}>
+                <div className={styles.titleContainer}>
+                    <h1 className={styles.mainTitle}>VolunteerConnect</h1>
+                </div>
+                <div className={styles.linksContainer}>
+                    {navUserLinks.map((link) => {
+                        const isActive = pathname == (link.href) ? true : false;
+                        const isLogout = (link.isLogout) ? handleLogout : clickedLink;
 
-                    return (
-                        <Links className={isActive ? `${styles.activeLink}` : ""} key={link.name} href={link.href} label={link.name} icon={link.icon} onClick={isLogout} />
-                    )
-                }
-                )}
+                        return (
+                            <Links className={isActive ? `${styles.activeLink}` : ""} key={link.name} href={link.href} label={link.name} icon={link.icon} onClick={isLogout} />
+                        )
+                    }
+                    )}
+                </div>
             </div>
         </div>
     );
 };
+
+export default Sidebar;

@@ -6,14 +6,16 @@ import { ITableRowProps } from "@/app/core/application/models/molecules/TableRow
 
 const TableRow: React.FC<ITableRowProps> = ({ title, description, startDate, endDate, isActive, organizer, onEdit, onDelete})  => {
     return (
-        <TableDataRow classname={styles.tr}>
-            <TableDataCell classname={styles.td}>{title}</TableDataCell>
-            <TableDataCell classname={styles.td}>{description}</TableDataCell>
-            <TableDataCell classname={styles.td}>{(startDate).toString()}</TableDataCell>
-            <TableDataCell classname={styles.td}>{(endDate).toString()}</TableDataCell>
-            <TableDataCell classname={styles.td}>{isActive? 'Active' : 'Inactive'}</TableDataCell>
-            <TableDataCell classname={styles.td}>{organizer}</TableDataCell>
-            <TableDataCell classname={styles.td}><ActionButtons onEdit={onEdit} onDelete={onDelete}/></TableDataCell> 
+        <TableDataRow className={styles.tr}>
+            <TableDataCell className={styles.td}>{title}</TableDataCell>
+            <TableDataCell className={styles.td}>{description}</TableDataCell>
+            <TableDataCell className={styles.td}>{(startDate).toString()}</TableDataCell>
+            <TableDataCell className={styles.td}>{(endDate).toString()}</TableDataCell>
+            <TableDataCell className={styles.td}>
+                {isActive? (<p className={styles.statusActive}>Active</p>) : (<p className={styles.statusInactive}>Inactive</p>)}
+            </TableDataCell>
+            <TableDataCell className={styles.td}>{organizer}</TableDataCell>
+            <TableDataCell className={styles.td}><ActionButtons onEdit={onEdit} onDelete={onDelete}/></TableDataCell> 
         </TableDataRow>
     );
 }
