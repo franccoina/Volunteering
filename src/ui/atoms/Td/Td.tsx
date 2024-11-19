@@ -2,9 +2,9 @@
 import { ITdProps } from '@/app/core/application/models/atoms/Td';
 import React from 'react';
 
-const TableDataCell: React.FC<ITdProps> = ({ children, classname }) => {
+const TableDataCell: React.FC<ITdProps> = ({ children, className }) => {
   return (
-    <td className={classname}>
+    <td className={className}>
       {children}
     </td>
   );

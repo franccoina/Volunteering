@@ -1,19 +1,25 @@
 @import "@/ui/themes/Variables.scss";
 
-.div {
-  width: 100%;
+.container {
+  padding: 1rem;
+  gap: 1rem;
+  background: $bgSenary;
+  min-height: 100%;
   height: auto;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: start;
 
-  .contentWrapper {
+  .div{
+    border-radius: 10px;
+    padding: 1rem;
     width: 100%;
     height: auto;
-    flex-grow: 1;
     display: flex;
     flex-direction: column;
-    padding: 1rem;
+    align-items: center;
+    background: $bgSecondary;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
   }
 }

@@ -1,15 +1,19 @@
 @import "@/ui/themes/Variables.scss";
 
 .sidebarContainer {
-    width: 250px;
     height: 100%;
-    background-color: $bgSecondary;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: center;
-    gap: 10px;
+    width: 250px;
 
+    .sidebarContent{
+        height: 100%;
+        background-color: $bgSecondary;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: center;
+        gap: 10px;
+    }
+    
     .titleContainer {
         display: flex;
         align-items: center;
@@ -46,6 +50,6 @@
     }
 
     .activeLink{
-        background-color: $borders;
+        background-color: $activeLink;
     }
 }

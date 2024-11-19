@@ -8,4 +8,22 @@
         border: none;
         text-align: left;
     }
+
+    .statusInactive{
+        text-align: center;
+        font-size: 11px;
+        padding: 2px;
+        border-radius: 10px;
+        color: $textTertiary;
+        background: $bgTertiary;
+    }
+
+    .statusActive{
+        text-align: center;
+        font-size: 11px;
+        padding: 2px;
+        border-radius: 10px;
+        color: $textQuaternary;
+        background: $bgQuaternary;
+    }
 }

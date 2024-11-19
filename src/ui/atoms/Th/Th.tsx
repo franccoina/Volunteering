@@ -2,9 +2,9 @@
 import { IThProps } from '@/app/core/application/models/atoms/Th';
 import React from 'react';
 
-const TableDataHead: React.FC<IThProps> = ({ children, classname }) => {
+const TableDataHead: React.FC<IThProps> = ({ children, className }) => {
   return (
-    <th className={classname}>
+    <th className={className}>
       {children}
     </th>
   );
